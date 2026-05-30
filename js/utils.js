@@ -42,7 +42,7 @@ export const filterProjects = (projects, filters) => {
 };
 
 // ПОЛУЧЕНИЕ ВСЕХ ТЕХНОЛОГИЙ 
-// Собирает все технологии из всех проектов (без повторений)
+// Собирает все технологии из всех проектов
 export const getAllTechnologies = (projects) => {
     // Используем reduce для сборки массива технологий
     return projects.reduce((allTechs, project) => {
@@ -60,7 +60,7 @@ export const getAllTechnologies = (projects) => {
 // СРЕДНИЙ УРОВЕНЬ НАВЫКОВ
 // Вычисляет средний уровень всех навыков
 export const getAverageSkillLevel = (skills) => {
-    // Сначала складываем все уровни (используем reduce)
+    // Сначала складываем все уровни
     const total = skills.reduce((sum, skill) => sum + skill.level, 0);
     // Делим на количество навыков и округляем до 1 знака
     return (total / skills.length).toFixed(1);
@@ -97,7 +97,7 @@ export const storage = {
         localStorage.setItem(key, JSON.stringify(value));
     },
     
-    // Получить данные из sessionStorage (очищается при закрытии вкладки)
+    // Получить данные из sessionStorage
     sessionGet: (key, defaultValue = null) => {
         const value = sessionStorage.getItem(key);
         try {

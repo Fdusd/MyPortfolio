@@ -7,7 +7,6 @@ import { FilterBar, ProjectCards, Modal } from './components.js';
 // Родитель для всех страниц
 class BasePage {
     render() {
-        // Этот метод должен переопределить каждая страница
         throw new Error('Каждая страница должна сама сказать, как рисовать');
     }
 }

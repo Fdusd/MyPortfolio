@@ -1,8 +1,8 @@
-// ГЛАВНЫЙ ФАЙЛ
-import { HomePage, SkillsPage, AboutPage, ContactsPage } from './pages.js';
-import { ThemeToggle } from './components.js';
-import { storage, getGreetingByHour } from './utils.js';
-import { GREETINGS } from './data.js';
+// Главный файл приложения
+import { HomePage, SkillsPage, AboutPage, ContactsPage } from './pages/index.js';
+import { ThemeToggle } from './components/ThemeToggle.js';
+import { storage, getGreetingByHour } from './utils/index.js';
+import { GREETINGS } from './data/constants.js';
 
 // ОПРЕДЕЛЯЕМ, КАКАЯ СТРАНИЦА ОТКРЫТА
 // Смотрим на адрес в браузере и возвращаем нужную страницу
@@ -40,41 +40,35 @@ function showGreeting() {
     }
 }
 
-// ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ ПРИ СКРОЛЛЕ
+// ЗАПУСК ВСЕГО САЙТА
 function setupScrollAnimations() {
-    // Находим все секции на странице
-    const allSections = document.querySelectorAll('section');
-    
-    // Создаём наблюдатель, который следит за появлением секций
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Если секция появилась в окне браузера
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';           // Делаем видимой
-                entry.target.style.transform = 'translateY(0)'; // Возвращаем на место
+    const sections = Array.from(document.querySelectorAll('section'));
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(24px)';
+        section.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    });
+
+    const showVisible = () => {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1 });  // Срабатывает, когда видно 10% секции
-    
-    // Для каждой секции: прячем её и начинаем следить
-    allSections.forEach(section => {
-        section.style.opacity = '0';                // Сначала невидима
-        section.style.transform = 'translateY(20px)'; // Сдвигаем вниз
-        section.style.transition = 'all 0.5s ease';   // Плавный переход
-        observer.observe(section);                   // Начинаем следить
-    });
+    };
+
+    showVisible();
+    window.addEventListener('scroll', showVisible);
 }
 
-// ЗАПУСК ВСЕГО САЙТА
-function init() {
-    showGreeting();              // Показываем приветствие
-    
-    new ThemeToggle();          // Создаём кнопку переключения темы
-    
-    const currentPage = getCurrentPage();  // Определяем, какая страница открыта
-    currentPage.render();       // Рисуем эту страницу
-    
-    setupScrollAnimations();    // Настраиваем плавное появление секций
+async function init() {
+    showGreeting();
+    new ThemeToggle();
+    const currentPage = getCurrentPage();
+    await currentPage.render();
+    setupScrollAnimations();
 }
 
 // Ждём, пока страница полностью загрузится, потом запускаем

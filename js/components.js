@@ -19,18 +19,15 @@ export class FilterBar {
         // Создаём HTML для панели фильтров
         this.container.innerHTML = `
             <div class="filter-bar" style="margin-bottom: 20px;">
-                <!-- Поле поиска -->
                 <input type="text" id="search-input" placeholder="🔍 Поиск проектов..." 
                        style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc;">
                 
-                <!-- Выбор категории -->
                 <select id="category-select" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
                     <option value="all">Все категории</option>
                     <option value="web">Веб-разработка</option>
                     <option value="desktop">Десктоп</option>
                 </select>
                 
-                <!-- Чекбоксы для выбора технологий -->
                 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                     ${this.allTechnologies.map(tech => `
                         <label style="display: flex; align-items: center; gap: 5px;">
