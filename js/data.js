@@ -9,8 +9,8 @@ export const PROJECTS = [
         description: 'Личный сайт с адаптивной версткой', // Описание
         image: 'static/images/tomat.jpg',         // Путь к картинке
         technologies: ['HTML', 'CSS', 'JS'],      // Какие технологии использовал
-        github: '#',                              // Ссылка на GitHub
-        demo: '#',                                // Ссылка на демо-версию
+        github: 'https://github.com/Fdusd/-------2/tree/main',                              // Ссылка на GitHub
+        demo: 'https://github.com/Fdusd/-------2/tree/main',                                // Ссылка на демо-версию
         category: 'web'                           // Категория: web, desktop, mobile
     },
     {

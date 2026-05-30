@@ -1,6 +1,6 @@
 // script.js - ПОЛНОСТЬЮ ИСПРАВЛЕННЫЙ
 
-// ========== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (БЕЗ МИГАНИЯ) ==========
+// ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
 (function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ========== ПРИВЕТСТВИЕ ==========
+// ПРИВЕТСТВИЕ
 if(!sessionStorage.getItem("greeted")){
     const hour = new Date().getHours();
     let text = "";
@@ -44,7 +44,7 @@ if(!sessionStorage.getItem("greeted")){
     sessionStorage.setItem("greeted", "true");
 }
 
-// ========== КАЛЬКУЛЯТОР ==========
+// КАЛЬКУЛЯТОР
 function updateButtonText() {
     const select = document.getElementById("dd");
     if (!select) return;
@@ -97,7 +97,7 @@ function calc() {
     resultEl.style.color = "#10b981";
 }
 
-// ========== КОНВЕРТЕР ВАЛЮТ ==========
+// КОНВЕРТЕР ВАЛЮТ
 const rates = { RUB: 1, USD: 94.5, EUR: 102.3 };
 
 async function fetchRealRates() {
@@ -140,7 +140,7 @@ function convert() {
     resultEl.style.color = "#10b981";
 }
 
-// ========== СЧЁТЧИК ПОСЕЩЕНИЙ ==========
+// СЧЁТЧИК ПОСЕЩЕНИЙ
 function updateVisitsCounter() {
     const visitsEl = document.getElementById("visites");
     if (!visitsEl) return;
@@ -166,7 +166,7 @@ function resetVisits() {
     }
 }
 
-// ========== ПРЕДПРОСМОТР ФОТО ==========
+// ПРЕДПРОСМОТР ФОТО
 const photoInput = document.getElementById("photo");
 if (photoInput) {
     photoInput.onchange = function() {
@@ -184,7 +184,7 @@ if (photoInput) {
     }
 }
 
-// ========== ПРОВЕРКА ДАТЫ ==========
+// ПРОВЕРКА ДАТЫ 
 const dateInput = document.getElementById("date");
 if (dateInput) {
     dateInput.oninput = function() {
@@ -196,7 +196,7 @@ if (dateInput) {
     }
 }
 
-// ========== МОДАЛЬНОЕ ОКНО (ГЛОБАЛЬНЫЕ ФУНКЦИИ) ==========
+// МОДАЛЬНОЕ ОКНО
 window.openModal = function() {
     const modal = document.getElementById("modal");
     if (modal) {
@@ -232,7 +232,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// ========== ВАЛИДАЦИЯ ФОРМЫ ==========
+// ВАЛИДАЦИЯ ФОРМЫ
 function validateForm(event) {
     // Останавливаем отправку формы
     if (event) event.preventDefault();
@@ -288,7 +288,7 @@ function validateForm(event) {
     // Если все проверки пройдены
     window.openModal();
     
-    // Сохраняем данные (опционально)
+    // Сохраняем данные
     const formData = {
         fio: fioValue,
         phone: phoneValue,

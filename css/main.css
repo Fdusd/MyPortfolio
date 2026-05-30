@@ -558,7 +558,6 @@ section {
         font-size: 1.5rem;
     }
     
-    /* На планшетах бургер работает, меню вертикальное компактное */
     .burger {
         display: flex;
     }
@@ -687,7 +686,7 @@ section {
     max-width: 250px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 0; /* убираем скругление для строгого квадрата */
+    border-radius: 0;
     display: block;
     margin: 0 auto;
     border: 3px solid var(--main-color);

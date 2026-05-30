@@ -143,10 +143,13 @@ export const validateForm = (formData) => {
             errors.push('Дата не может быть раньше сегодняшней');
         }
     }
-    
+
     // Возвращаем результат: есть ошибки или нет, и список ошибок
     return {
         isValid: errors.length === 0,  // true если ошибок нет
         errors: errors                  // массив с ошибками
     };
+
 };
+
+

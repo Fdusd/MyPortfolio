@@ -452,6 +452,12 @@ export class ContactsPage extends BasePage {
             form.reset();
             const preview = document.getElementById('preview');
             if (preview) preview.src = '';
+
+            // Сохранение формы
+            let submissions = JSON.parse(localStorage.getItem("formSubmissions") || "[]");
+            submissions.push(formData);
+            localStorage.setItem("formSubmissions", JSON.stringify(submissions));
+            console.log("Форма отправлена:", formData);
         });
     }
     
