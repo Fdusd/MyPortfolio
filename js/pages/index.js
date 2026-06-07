@@ -1,6 +1,4 @@
-import HomePage from './HomePage.js';
-import SkillsPage from './SkillsPage.js';
-import AboutPage from './AboutPage.js';
-import ContactsPage from './ContactsPage.js';
-
-export { HomePage, SkillsPage, AboutPage, ContactsPage };
+export { HomePage } from './HomePage.js';
+export { SkillsPage } from './SkillsPage.js';
+export { AboutPage } from './AboutPage.js';
+export { ContactsPage } from './ContactsPage.js';

@@ -1,11 +1,14 @@
-import BasePage from './BasePage.js';
+import { BasePage } from './BasePage.js';
 import { PROJECTS, USEFUL_LINKS, GREETINGS } from '../data/constants.js';
 import { ProjectCards } from '../components/ProjectCards.js';
 import { FilterBar } from '../components/FilterBar.js';
 import { ThemeToggle } from '../components/ThemeToggle.js';
 import { getGreetingByHour } from '../utils/index.js';
 
-export default class HomePage extends BasePage {
+export class HomePage extends BasePage {
+    constructor() {
+        super('Главная');
+    }
     render() {
         this.renderHero();
         this.renderPhoto();

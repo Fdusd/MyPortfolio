@@ -1,7 +1,10 @@
-import BasePage from './BasePage.js';
+import { BasePage } from './BasePage.js';
 import { ACHIEVEMENTS } from '../data/constants.js';
 
-export default class AboutPage extends BasePage {
+export class AboutPage extends BasePage {
+    constructor() {
+        super('Обо мне');
+    }
     render() {
         this.renderContent();
         this.renderAchievements();

@@ -1,9 +1,12 @@
-import BasePage from './BasePage.js';
+import { BasePage } from './BasePage.js';
 import { SKILLS, ACHIEVEMENTS } from '../data/constants.js';
 import { getAverageSkillLevel } from '../utils/index.js';
 import { DataTable } from '../components/DataTable.js';
 
-export default class SkillsPage extends BasePage {
+export class SkillsPage extends BasePage {
+    constructor() {
+        super('Навыки');
+    }
     async render() {
         this.renderSkillsIntro();
         this.renderSkillsTable();
@@ -72,6 +75,15 @@ export default class SkillsPage extends BasePage {
             </div>
         `;
 
+        const blockInvalidInput = (event) => {
+            if (event.key === 'e' || event.key === 'E' || event.key === '-') {
+                event.preventDefault();
+            }
+        };
+
+        document.getElementById('calc-a')?.addEventListener('keydown', blockInvalidInput);
+        document.getElementById('calc-b')?.addEventListener('keydown', blockInvalidInput);
+
         document.getElementById('calc-btn')?.addEventListener('click', () => {
             const valueA = parseFloat(document.getElementById('calc-a')?.value);
             const valueB = parseFloat(document.getElementById('calc-b')?.value);
@@ -126,6 +138,12 @@ export default class SkillsPage extends BasePage {
                 <p id="curr-result" class="result-display"></p>
             </div>
         `;
+
+        document.getElementById('curr-amount')?.addEventListener('keydown', (event) => {
+            if (event.key === 'e' || event.key === 'E' || event.key === '-') {
+                event.preventDefault();
+            }
+        });
 
         const rates = { RUB: 1, USD: 94.5, EUR: 102.3 };
         document.getElementById('curr-btn')?.addEventListener('click', () => {

@@ -87,8 +87,10 @@ export const validateForm = (formData) => {
         errors.push('Введите номер телефона');
     } else {
         const cleanPhone = formData.phone.replace(/[\s+\-()]/g, '');
-        if (cleanPhone.length < 10 || cleanPhone.length > 12) {
-            errors.push('Введите корректный номер телефона (10-12 цифр)');
+        const isValidRussian = /^(\+7|8|7)?\d{10,11}$/.test(cleanPhone);
+        
+        if (!isValidRussian) {
+            errors.push('Используйте российский номер (+7 или 8 в начале, всего 11 цифр)');
         }
     }
 

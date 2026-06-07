@@ -4,13 +4,9 @@ import { ThemeToggle } from './components/ThemeToggle.js';
 import { storage, getGreetingByHour } from './utils/index.js';
 import { GREETINGS } from './data/constants.js';
 
-// ОПРЕДЕЛЯЕМ, КАКАЯ СТРАНИЦА ОТКРЫТА
-// Смотрим на адрес в браузере и возвращаем нужную страницу
 function getCurrentPage() {
-    // Получаем имя файла из адреса (main.html, ISD1.html и т.д.)
     const currentPath = window.location.pathname.split('/').pop() || 'main.html';
     
-    // Соответствие между адресом и классом страницы
     const pagesMap = {
         'main.html': HomePage,
         'ISD1.html': SkillsPage,
@@ -18,29 +14,23 @@ function getCurrentPage() {
         'contacts.html': ContactsPage
     };
     
-    // Если страница найдена - создаём её, иначе главную
     const PageClass = pagesMap[currentPath] || HomePage;
     return new PageClass();
 }
 
-// ПРИВЕТСТВИЕ ПРИ ПЕРВОМ ПОСЕЩЕНИИ
 function showGreeting() {
-    // Проверяем, не показывали ли уже приветствие в этой сессии
     const alreadyGreeted = storage.sessionGet('greeted');
     
     if (!alreadyGreeted) {
-        // Определяем время суток и выбираем приветствие
-        const timeOfDay = getGreetingByHour();  // 'morning', 'afternoon' или 'evening'
+        const timeOfDay = getGreetingByHour();
         const greetingText = GREETINGS[timeOfDay];
         
-        alert(greetingText);  // Показываем всплывающее сообщение
+        alert(greetingText);
         
-        // Запоминаем, что уже показали
         storage.sessionSet('greeted', true);
     }
 }
 
-// ЗАПУСК ВСЕГО САЙТА
 function setupScrollAnimations() {
     const sections = Array.from(document.querySelectorAll('section'));
     sections.forEach(section => {
@@ -64,16 +54,15 @@ function setupScrollAnimations() {
 }
 
 async function init() {
-    showGreeting();
     new ThemeToggle();
+    showGreeting();
     const currentPage = getCurrentPage();
-    await currentPage.render();
+    await currentPage.init();
     setupScrollAnimations();
 }
 
-// Ждём, пока страница полностью загрузится, потом запускаем
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
-    init();  // Если страница уже загружена - запускаем сразу
+    init();
 }
