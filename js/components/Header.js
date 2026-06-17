@@ -2,7 +2,7 @@ export class Header {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.navLinks = [
-            { name: 'Главная', href: 'main.html' },
+            { name: 'Главная', href: 'index.html' },
             { name: 'Навыки', href: 'ISD1.html' },
             { name: 'Обо мне', href: 'ISD2.html' },
             { name: 'Контакты', href: 'contacts.html' }
